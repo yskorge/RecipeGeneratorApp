@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "404926914029",
+    "firebase_url": "https://recipegenerator-a14d3.firebaseio.com",
+    "project_id": "recipegenerator-a14d3",
+    "storage_bucket": "recipegenerator-a14d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404926914029:android:371959f8ab669867c0dbe4",
+        "android_client_info": {
+          "package_name": "skorge.yngve.recipegeneratorapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "404926914029-5lrb950qp8m9s4frhvriinavtuhblk2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "skorge.yngve.recipegeneratorapp",
+            "certificate_hash": "cd7c59ee92d82cf5383e49b4ea95a793a1e5377d"
+          }
+        },
+        {
+          "client_id": "404926914029-lqqvsihd8t5pdl0iml5hflft47s9dtn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKgP7nSZXtB9tS_3DM86uG2tz2OllzuHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "404926914029-lqqvsihd8t5pdl0iml5hflft47s9dtn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404926914029:android:ec9044721d150e8dc0dbe4",
+        "android_client_info": {
+          "package_name": "yngveskorge.recipegenerator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "404926914029-fj0k7ue0l42cbfk44gm3rsdlt7ap14v1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "yngveskorge.recipegenerator",
+            "certificate_hash": "cd7c59ee92d82cf5383e49b4ea95a793a1e5377d"
+          }
+        },
+        {
+          "client_id": "404926914029-lqqvsihd8t5pdl0iml5hflft47s9dtn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKgP7nSZXtB9tS_3DM86uG2tz2OllzuHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "404926914029-lqqvsihd8t5pdl0iml5hflft47s9dtn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
