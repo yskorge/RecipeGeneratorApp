@@ -27,10 +27,10 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/listitem_description"
+            android:id="@+id/listitem_ingredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:text="Ingredients"
             android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>

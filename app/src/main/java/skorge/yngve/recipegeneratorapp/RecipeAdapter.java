@@ -1,7 +1,6 @@
 package skorge.yngve.recipegeneratorapp;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import skorge.yngve.recipegeneratorapp.models.Recipe;
 
 public class RecipeAdapter extends BaseAdapter {
 
@@ -36,10 +37,10 @@ public class RecipeAdapter extends BaseAdapter {
         convertView = LayoutInflater.from(context).inflate(R.layout.listview_row, parent, false);
 
         TextView title = convertView.findViewById(R.id.listitem_title);
-        TextView description = convertView.findViewById(R.id.listitem_description);
+        TextView ingredients = convertView.findViewById(R.id.listitem_ingredients);
 
         title.setText(arrayList.get(position).getTitle());
-        description.setText(arrayList.get(position).getDescription());
+        ingredients.setText(arrayList.get(position).getIngredients());
 
         return convertView;
     }
