@@ -1,5 +1,6 @@
 package skorge.yngve.recipegeneratorapp;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 
 import android.os.Bundle;
@@ -33,16 +34,8 @@ public class HomeFragment extends Fragment {
     DatabaseReference recipesRef = refGlobal.child("recipes");
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-//        // TODO static data for FE testing
-//        Recipe soup = new Recipe("Moms Souppp", "delicous", "tomatoes, onions");
-//        Recipe spag = new Recipe("Dads Spag", "spicy", "pasta, garlic");
-//        Recipe burger = new Recipe("Jerrys Burger", "meaty burger", "bread, meat");
-//        recipeList.add(soup);
-//        recipeList.add(spag);
-//        recipeList.add(burger);
 
         // Attach a listener to read the data at our recipe reference
         recipesRef.addValueEventListener(new ValueEventListener() {
@@ -54,7 +47,6 @@ public class HomeFragment extends Fragment {
                     for(DataSnapshot dss: dataSnapshot.getChildren()) {
                         Recipe recipe = dss.getValue(Recipe.class);
                         recipeList.add(recipe);
-                        Log.d("yngveeee 666", recipe.toString());
                     }
                 }
             }
@@ -76,7 +68,16 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(recipeList.size() > 0) {
-                    tvHomeRecipe.setText(recipeList.get(getRandom(recipeList.size())).getTitle());
+                    final Recipe currentRecipe = recipeList.get(getRandom(recipeList.size()));
+                    tvHomeRecipe.setText(currentRecipe.getTitle());
+                    tvHomeRecipe.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getActivity(), SingleRecipeActivity.class);
+                            intent.putExtra("currentRecipe", currentRecipe);
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
         });

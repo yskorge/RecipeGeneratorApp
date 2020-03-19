@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerVertical="true"
+    >
+
+    <TextView
+        android:id="@+id/single_recipe_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:text="Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/single_recipe_ingredients_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/single_recipe_title"
+        android:layout_marginTop="20dp"
+        android:fontFamily="cursive"
+        android:padding="5dp"
+        android:text="Ingredients"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/single_recipe_ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/single_recipe_ingredients_title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:lines="4"
+        android:padding="10dp"
+        android:text="Tomatoes, Onions, Fish"
+        android:textSize="18sp"
+        android:background="@drawable/border"
+    />
+
+    <TextView
+        android:id="@+id/single_recipe_instructions_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/single_recipe_ingredients"
+        android:layout_marginTop="30dp"
+        android:fontFamily="cursive"
+        android:padding="5dp"
+        android:text="Instructions"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/single_recipe_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/single_recipe_instructions_title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:lines="8"
+        android:padding="10dp"
+        android:text="Start by cooking the tomatoes..."
+        android:textSize="18sp"
+        android:background="@drawable/border"
+    />
+
+</RelativeLayout>

@@ -4,14 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_recipe:
                     selectedFragment = new RecipeFragment();
                     break;
-                case R.id.navigation_settings:
-                    selectedFragment = new SettingsFragment();
-                    break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return true;
@@ -45,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         loadFragment(new HomeFragment());
-
-        Log.d("myTag", "This is MAin");
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

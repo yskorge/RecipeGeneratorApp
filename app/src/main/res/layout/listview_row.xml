@@ -7,10 +7,10 @@
 
     <ImageView
         android:id="@+id/listitem_image"
-        android:layout_width="122dp"
-        android:layout_height="match_parent"
+        android:layout_width="154dp"
+        android:layout_height="74dp"
         android:layout_weight="1"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        android:src="@drawable/food" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,6 +20,7 @@
         android:orientation="vertical">
 
         <TextView
+
             android:id="@+id/listitem_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +30,7 @@
         <TextView
             android:id="@+id/listitem_ingredients"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:text="Ingredients"
             android:textSize="12sp" />
     </LinearLayout>

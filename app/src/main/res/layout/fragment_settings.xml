@@ -5,12 +5,18 @@
     <TextView
         android:id="@+id/title_settings"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="71dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="141dp"
-        android:layout_marginLeft="141dp"
-        android:layout_marginTop="144dp"
-        android:text="Settings" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="125dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="123dp"
+        android:layout_marginRight="123dp"
+        android:gravity="center_horizontal"
+        android:text="Settings coming soon"
+        android:textSize="24sp" />
 </RelativeLayout>

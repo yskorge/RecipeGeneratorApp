@@ -4,12 +4,23 @@ import java.io.Serializable;
 
 public class Recipe implements Serializable {
     private String title;
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    private String tag;
     private String instructions;
     private int id;
     private String ingredients;
 
-    public Recipe(String title, String instructions, String ingredients) {
+    public Recipe(String title, String tag, String instructions, String ingredients) {
         this.title = title;
+        this.tag = tag;
         this.instructions = instructions;
         this.ingredients = ingredients;
     }
@@ -20,6 +31,7 @@ public class Recipe implements Serializable {
     public String toString() {
         return "Recipe{" +
                 "title='" + title + '\'' +
+                ", tag='" + tag + '\'' +
                 ", instructions='" + instructions + '\'' +
                 ", id=" + id +
                 ", ingredients='" + ingredients + '\'' +

@@ -88,8 +88,8 @@ public class RecipeFragment extends Fragment implements AddRecipeDialog.AddRecip
     }
 
     @Override
-    public void applyInputs(String title, String ingredients, String instructions) {
-        Recipe newRecipe = new Recipe(title, instructions, ingredients);
+    public void applyInputs(String title, String tag, String ingredients, String instructions) {
+        Recipe newRecipe = new Recipe(title, tag, instructions, ingredients);
 
 //        recipeList.add(newRecipe);
 

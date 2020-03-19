@@ -8,11 +8,19 @@
         android:layout_height="wrap_content"
         android:hint="Name" />
 
+    <Spinner
+        android:id="@+id/add_recipe_tag_spinner"
+        style="@android:style/Widget.Spinner.DropDown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_recipe_title"
+        android:minHeight="40dp" />
+
     <EditText
         android:id="@+id/add_recipe_ingredients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/add_recipe_title"
+        android:layout_below="@+id/add_recipe_tag_spinner"
         android:hint="Ingredients"
         android:inputType="textMultiLine"
         android:lines="4"
