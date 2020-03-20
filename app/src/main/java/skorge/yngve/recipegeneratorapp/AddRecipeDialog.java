@@ -54,6 +54,7 @@ public class AddRecipeDialog extends AppCompatDialogFragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         // Apply the adapter to the spinner
         mSpinner.setAdapter(adapter);
+
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

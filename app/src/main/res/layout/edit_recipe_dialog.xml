@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:padding="16dp">
+
+    <EditText
+        android:id="@+id/edit_recipe_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name" />
+
+    <Spinner
+        android:id="@+id/edit_recipe_tag_spinner"
+        style="@android:style/Widget.Spinner.DropDown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_recipe_title"
+        android:minHeight="40dp" />
+
+    <EditText
+        android:id="@+id/edit_recipe_ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_recipe_tag_spinner"
+        android:hint="Ingredients"
+        android:inputType="textMultiLine"
+        android:lines="4"
+        android:gravity="top"/>
+
+    <EditText
+        android:id="@+id/edit_recipe_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_recipe_ingredients"
+        android:hint="Instructions"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:gravity="top"/>
+
+
+</RelativeLayout>
