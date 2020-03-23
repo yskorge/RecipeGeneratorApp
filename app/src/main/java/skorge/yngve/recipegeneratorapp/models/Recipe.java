@@ -4,28 +4,20 @@ import java.io.Serializable;
 
 public class Recipe implements Serializable {
     private String title;
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
     private String tag;
     private String instructions;
     private int id;
     private String ingredients;
 
-    public Recipe(String title, String tag, String instructions, String ingredients) {
+    public Recipe(String title, String tag, String ingredients, String instructions) {
         this.title = title;
         this.tag = tag;
         this.instructions = instructions;
         this.ingredients = ingredients;
     }
 
-    public Recipe() {}
+    public Recipe() {
+    }
 
     @Override
     public String toString() {
@@ -45,6 +37,10 @@ public class Recipe implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getTag() { return tag; }
+
+    public void setTag(String tag) { this.tag = tag; }
 
     public String getInstructions() {
         return instructions;

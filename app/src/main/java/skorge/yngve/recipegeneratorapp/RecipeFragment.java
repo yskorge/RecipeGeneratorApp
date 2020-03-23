@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,19 +18,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
+import skorge.yngve.recipegeneratorapp.dialogs.AddRecipeDialog;
+import skorge.yngve.recipegeneratorapp.firebase.FirebaseDatabaseHelper;
 import skorge.yngve.recipegeneratorapp.models.Recipe;
 
-public class RecipeFragment extends Fragment implements AddRecipeDialog.AddRecipeListener {
+public class RecipeFragment extends Fragment {
 
     ListView mListView;
     Button mButton;
-    ArrayList<Recipe> recipeList = new ArrayList<>();
     RecipeAdapter recipeAdapter;
-
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference refGlobal = database.getReference("server");
-    DatabaseReference recipesRef = refGlobal.child("recipes");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,43 +46,64 @@ public class RecipeFragment extends Fragment implements AddRecipeDialog.AddRecip
 
         mListView = (ListView) view.findViewById(R.id.recipe_listview);
 
-        recipeAdapter = new RecipeAdapter(getContext(), recipeList);
-        mListView.setAdapter(recipeAdapter);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // firebase read
+        new FirebaseDatabaseHelper().readRecipes(new FirebaseDatabaseHelper.DataStatus() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), SingleRecipeActivity.class);
-                intent.putExtra("currentRecipe", recipeList.get(i));
-                startActivity(intent);
-            }
-        });
+            public void DataIsLoaded(final ArrayList<Recipe> recipes, List<String> keys) {
 
-        // Attach a listener to read the data at our recipe reference
-        recipesRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()) {
-                    recipeList.clear();
-                    Log.d("yngveeee", dataSnapshot.toString());
-                    Log.d("yngveeee2", dataSnapshot.getValue().toString());
+                recipeAdapter = new RecipeAdapter(getContext(), recipes, keys);
+                mListView.setAdapter(recipeAdapter);
+                recipeAdapter.notifyDataSetChanged();
 
-                    for(DataSnapshot dss: dataSnapshot.getChildren()) {
-                        Recipe recipe = dss.getValue(Recipe.class);
-                        Log.d("yngveeee 55", recipe.toString());
-                        recipeList.add(recipe);
+                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(getActivity(), SingleRecipeActivity.class);
+                        intent.putExtra("currentRecipe", recipes.get(i));
+                        startActivity(intent);
                     }
-                  recipeAdapter.notifyDataSetChanged();
-                }
+                });
             }
-
-
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
             }
         });
+
+//        // Attach a listener to read the data at our recipe reference
+//        recipesRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.exists()) {
+//                    recipeList.clear();
+//                    Log.d("yngveeee", dataSnapshot.toString());
+//                    Log.d("yngveeee2", dataSnapshot.getValue().toString());
+//
+//                    for(DataSnapshot dss: dataSnapshot.getChildren()) {
+//                        Recipe recipe = dss.getValue(Recipe.class);
+////                        Log.d("yngveeee 55", recipe.toString());
+//                        recipeList.add(recipe);
+//                    }
+//                  recipeAdapter.notifyDataSetChanged();
+//                }
+//            }
+
+        //            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getCode());
+//            }
+//        });
         return view;
     }
 
@@ -92,19 +111,5 @@ public class RecipeFragment extends Fragment implements AddRecipeDialog.AddRecip
         AddRecipeDialog addRecipeDialog = new AddRecipeDialog();
         addRecipeDialog.setTargetFragment(RecipeFragment.this, 1);
         addRecipeDialog.show(getFragmentManager(), "add recipe dialog");
-    }
-
-    @Override
-    public void applyInputs(String title, String tag, String ingredients, String instructions) {
-        Recipe newRecipe = new Recipe(title, tag, instructions, ingredients);
-
-//        recipeList.add(newRecipe);
-
-        //TODO change title to a unique id
-        recipesRef.child(title).setValue(newRecipe);
-        recipeAdapter.notifyDataSetChanged();
-
-//        for(int i = 0; i < recipeList.size(); i++)
-//            Log.d("arrayyy", recipeList.get(i).getInstructions());
     }
 }

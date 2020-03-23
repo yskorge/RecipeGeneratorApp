@@ -24,7 +24,6 @@ import skorge.yngve.recipegeneratorapp.models.Recipe;
 
 public class HomeFragment extends Fragment {
 
-    ListView mListView = null;
     private ArrayList<Recipe> recipeList = new ArrayList<>();
     TextView tvHomeRecipe;
     Button bRandomGenerator;
