@@ -6,10 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import skorge.yngve.recipegeneratorapp.MainActivity;
 import skorge.yngve.recipegeneratorapp.R;
 import skorge.yngve.recipegeneratorapp.firebase.FirebaseDatabaseHelper;
 import skorge.yngve.recipegeneratorapp.models.Recipe;
@@ -26,8 +29,7 @@ public class AddRecipeDialog extends AppCompatDialogFragment {
     private EditText mEditTitle;
     private EditText mEditIngredients;
     private EditText mEditInstructions;
-    private Spinner mSpinner;
-    private String currentTag;
+    private ArrayList<String> currentTags = new ArrayList<>();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -35,36 +37,45 @@ public class AddRecipeDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.add_recipe_dialog, null);
 
+
         mEditTitle = view.findViewById(R.id.add_recipe_title);
         mEditIngredients = view.findViewById(R.id.add_recipe_ingredients);
         mEditInstructions = view.findViewById(R.id.add_recipe_instructions);
-        mSpinner = view.findViewById(R.id.add_recipe_tag_spinner);
 
-        final ArrayList<String> tags = new ArrayList<String>() {{
-            add("Breakfast");
-            add("Lunch");
-            add("Dinner");
-            add("Meat");
-            add("Vegetarian");
-            add("Fish");
-        }};
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tags);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        // Apply the adapter to the spinner
-        mSpinner.setAdapter(adapter);
-
-        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //TODO works but shit
+        final CheckBox breakfast = view.findViewById(R.id.checkBox_breakfast);
+        breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                currentTag = tags.get(i);
+            public void onClick(View v) {
+                if (breakfast.isChecked()){
+                    currentTags.add("Breakfast");
+                }else{
+                    currentTags.remove("Breakfast");
+                }
             }
+        });
 
+        final CheckBox lunch = view.findViewById(R.id.checkBox_lunch);
+        lunch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                //do nothing atm
+            public void onClick(View v) {
+                if (lunch.isChecked()){
+                    currentTags.add("Lunch");
+                }else{
+                    currentTags.remove("Lunch");
+                }
+            }
+        });
+
+        final CheckBox dinner = view.findViewById(R.id.checkBox_dinner);
+        dinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dinner.isChecked()){
+                    currentTags.add("Dinner");
+                }else{
+                    currentTags.remove("Dinner");
+                }
             }
         });
 
@@ -83,9 +94,9 @@ public class AddRecipeDialog extends AppCompatDialogFragment {
                         String ingredients = mEditIngredients.getText().toString();
                         String instructions = mEditInstructions.getText().toString();
 
-                        if(title.length() > 2 || ingredients.length() > 2 || instructions.length() > 2) {
+                        if (title.length() > 2 || ingredients.length() > 2 || instructions.length() > 2) {
 //                            addRecipeListener.applyInputs(title, currentTag, ingredients, instructions);
-                            Recipe recipe = new Recipe(title, currentTag, ingredients, instructions);
+                            Recipe recipe = new Recipe(title, currentTags, ingredients, instructions);
                             new FirebaseDatabaseHelper().addRecipe(recipe, new FirebaseDatabaseHelper.DataStatus() {
                                 @Override
                                 public void DataIsLoaded(ArrayList<Recipe> recipes, List<String> keys) {
@@ -116,6 +127,5 @@ public class AddRecipeDialog extends AppCompatDialogFragment {
 
         return builder.create();
     }
-
 }
 

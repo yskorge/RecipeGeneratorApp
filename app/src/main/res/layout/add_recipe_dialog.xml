@@ -8,19 +8,97 @@
         android:layout_height="wrap_content"
         android:hint="Name" />
 
-    <Spinner
-        android:id="@+id/add_recipe_tag_spinner"
-        style="@android:style/Widget.Spinner.DropDown"
+<!--    <Spinner-->
+<!--        android:id="@+id/add_recipe_tag_spinner"-->
+<!--        style="@android:style/Widget.Spinner.DropDown"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/add_recipe_title"-->
+<!--        android:minHeight="40dp" />-->
+
+
+    <LinearLayout
+        android:id="@+id/checkBox_layout_row1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/add_recipe_title"
-        android:minHeight="40dp" />
+        android:weightSum="3"
+        >
+
+        <CheckBox
+            android:onClick="onCheckboxClicked"
+            android:buttonTint="@color/colorPrimary"
+            android:id="@+id/checkBox_breakfast"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Breakfast"
+            android:textColorHighlight="#009688"
+            android:textColorLink="#009688" />
+
+        <CheckBox
+            android:buttonTint="@color/colorPrimary"
+            android:id="@+id/checkBox_lunch"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lunch"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#009688" />
+
+        <CheckBox
+            android:buttonTint="@color/colorPrimary"
+            android:id="@+id/checkBox_dinner"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dinner" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/checkBox_layout_row2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox_layout_row1"
+        android:weightSum="3"
+        >
+
+        <CheckBox
+            android:buttonTint="@color/colorPrimary"
+            android:id="@+id/checkBox_veggie"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Veggie"
+            android:textColorHighlight="#009688"
+            android:textColorLink="#009688" />
+
+        <CheckBox
+            android:buttonTint="@color/colorPrimary"
+            android:id="@+id/checkBox_fish"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Fish"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#009688" />
+
+        <CheckBox
+            android:buttonTint="@color/colorPrimary"
+            android:id="@+id/checkBox_meat"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Meat" />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/add_recipe_ingredients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/add_recipe_tag_spinner"
+        android:layout_below="@+id/checkBox_layout_row2"
         android:hint="Ingredients"
         android:inputType="textMultiLine"
         android:lines="4"

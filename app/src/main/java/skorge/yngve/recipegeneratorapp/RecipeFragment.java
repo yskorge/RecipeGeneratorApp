@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,11 +32,12 @@ public class RecipeFragment extends Fragment {
     ListView mListView;
     Button mButton;
     RecipeAdapter recipeAdapter;
+    RelativeLayout loader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_recipe, container, false);
+        final View view = inflater.inflate(R.layout.fragment_recipe, container, false);
 
         mButton = (Button) view.findViewById(R.id.recipe_add_recipe);
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -45,11 +48,16 @@ public class RecipeFragment extends Fragment {
         });
 
         mListView = (ListView) view.findViewById(R.id.recipe_listview);
+        loader = view.findViewById(R.id.loadingPanel);
 
         // firebase read
         new FirebaseDatabaseHelper().readRecipes(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(final ArrayList<Recipe> recipes, List<String> keys) {
+
+                if(recipes.size() > 0) {
+                    loader.setVisibility(View.GONE);
+                }
 
                 recipeAdapter = new RecipeAdapter(getContext(), recipes, keys);
                 mListView.setAdapter(recipeAdapter);

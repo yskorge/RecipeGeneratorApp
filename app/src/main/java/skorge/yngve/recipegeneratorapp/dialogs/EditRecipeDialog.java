@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -31,10 +32,8 @@ public class EditRecipeDialog extends AppCompatDialogFragment {
     private EditText mEditTitle;
     private EditText mEditIngredients;
     private EditText mEditInstructions;
-    private Spinner mSpinner;
     private Recipe recipe;
     private String key;
-    private String currentTag;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -52,22 +51,58 @@ public class EditRecipeDialog extends AppCompatDialogFragment {
         mEditTitle = view.findViewById(R.id.edit_recipe_title);
         mEditIngredients = view.findViewById(R.id.edit_recipe_ingredients);
         mEditInstructions = view.findViewById(R.id.edit_recipe_instructions);
-        mSpinner = view.findViewById(R.id.edit_recipe_tag_spinner);
-
-        final ArrayList<String> tags = new ArrayList<String>() {{
-            add("Breakfast");
-            add("Lunch");
-            add("Dinner");
-            add("Meat");
-            add("Vegetarian");
-            add("Fish");
-        }};
 
         mEditTitle.setText(recipe.getTitle());
         mEditIngredients.setText(recipe.getIngredients());
         mEditInstructions.setText(recipe.getInstructions());
-        currentTag = recipe.getTag();
 
+        //TODO works but shit
+        final CheckBox breakfast = view.findViewById(R.id.checkBox_breakfast);
+        if(recipe.getTags().contains("Breakfast")) {
+            breakfast.setChecked(true);
+        }
+        breakfast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (breakfast.isChecked() && !recipe.getTags().contains("Breakfast")){
+                    recipe.getTags().add("Breakfast");
+                }else{
+                    recipe.getTags().remove("Breakfast");
+                }
+            }
+        });
+
+        final CheckBox lunch = view.findViewById(R.id.checkBox_lunch);
+        if(recipe.getTags().contains("Lunch")) {
+            lunch.setChecked(true);
+        }
+        lunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (lunch.isChecked() && !recipe.getTags().contains("Lunch")){
+                    recipe.getTags().add("Lunch");
+                }else{
+                    recipe.getTags().remove("Lunch");
+                }
+            }
+        });
+
+        final CheckBox dinner = view.findViewById(R.id.checkBox_dinner);
+        if(recipe.getTags().contains("Dinner")) {
+            dinner.setChecked(true);
+        }
+        dinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dinner.isChecked() && !recipe.getTags().contains("Dinner")){
+                    recipe.getTags().add("Dinner");
+                }else{
+                    recipe.getTags().remove("Dinner");
+                }
+            }
+        });
+
+        /*
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tags);
         // Specify the layout to use when the list of choices appears
@@ -89,6 +124,8 @@ public class EditRecipeDialog extends AppCompatDialogFragment {
             }
         });
 
+         */
+
         builder.setView(view)
                 .setTitle("Edit Recipe")
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -106,7 +143,8 @@ public class EditRecipeDialog extends AppCompatDialogFragment {
 
                         if (title.length() > 2 || ingredients.length() > 2 || instructions.length() > 2) {
 //                            recipeRef.child(title).setValue(new Recipe(title, "test", ingredients, instructions));
-                            Recipe recipe = new Recipe(title, currentTag, ingredients, instructions);
+                            ArrayList<String> currentTags = recipe.getTags();
+                            Recipe recipe = new Recipe(title, currentTags , ingredients, instructions);
                             new FirebaseDatabaseHelper().updateRecipe(key, recipe, new FirebaseDatabaseHelper.DataStatus() {
                                 @Override
                                 public void DataIsLoaded(ArrayList<Recipe> recipes, List<String> keys) {

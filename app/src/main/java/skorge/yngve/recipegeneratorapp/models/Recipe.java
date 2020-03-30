@@ -1,17 +1,18 @@
 package skorge.yngve.recipegeneratorapp.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Recipe implements Serializable {
     private String title;
-    private String tag;
+    private ArrayList<String> tags = new ArrayList<>();
     private String instructions;
     private int id;
     private String ingredients;
 
-    public Recipe(String title, String tag, String ingredients, String instructions) {
+    public Recipe(String title, ArrayList<String> tags, String ingredients, String instructions) {
         this.title = title;
-        this.tag = tag;
+        this.tags = tags;
         this.instructions = instructions;
         this.ingredients = ingredients;
     }
@@ -23,7 +24,7 @@ public class Recipe implements Serializable {
     public String toString() {
         return "Recipe{" +
                 "title='" + title + '\'' +
-                ", tag='" + tag + '\'' +
+                ", tags=" + tags +
                 ", instructions='" + instructions + '\'' +
                 ", id=" + id +
                 ", ingredients='" + ingredients + '\'' +
@@ -38,9 +39,13 @@ public class Recipe implements Serializable {
         this.title = title;
     }
 
-    public String getTag() { return tag; }
+    public ArrayList<String> getTags() {
+        return tags;
+    }
 
-    public void setTag(String tag) { this.tag = tag; }
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
+    }
 
     public String getInstructions() {
         return instructions;
