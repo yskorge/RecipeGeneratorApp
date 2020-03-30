@@ -105,7 +105,7 @@ public class AddRecipeDialog extends AppCompatDialogFragment {
 
                                 @Override
                                 public void DataIsInserted() {
-                                    Toast.makeText(getContext(), "Successfully added a recipe!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Successfully added a recipe!!!", Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override
