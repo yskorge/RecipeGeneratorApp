@@ -5,23 +5,14 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import skorge.yngve.recipegeneratorapp.R;
 import skorge.yngve.recipegeneratorapp.firebase.FirebaseDatabaseHelper;
@@ -58,45 +49,45 @@ public class EditRecipeDialog extends AppCompatDialogFragment {
 
         //TODO works but shit
         final CheckBox breakfast = view.findViewById(R.id.checkBox_breakfast);
-        if(recipe.getTags().contains("Breakfast")) {
+        if (recipe.getTags().contains("Breakfast")) {
             breakfast.setChecked(true);
         }
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (breakfast.isChecked() && !recipe.getTags().contains("Breakfast")){
+                if (breakfast.isChecked() && !recipe.getTags().contains("Breakfast")) {
                     recipe.getTags().add("Breakfast");
-                }else{
+                } else {
                     recipe.getTags().remove("Breakfast");
                 }
             }
         });
 
         final CheckBox lunch = view.findViewById(R.id.checkBox_lunch);
-        if(recipe.getTags().contains("Lunch")) {
+        if (recipe.getTags().contains("Lunch")) {
             lunch.setChecked(true);
         }
         lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (lunch.isChecked() && !recipe.getTags().contains("Lunch")){
+                if (lunch.isChecked() && !recipe.getTags().contains("Lunch")) {
                     recipe.getTags().add("Lunch");
-                }else{
+                } else {
                     recipe.getTags().remove("Lunch");
                 }
             }
         });
 
         final CheckBox dinner = view.findViewById(R.id.checkBox_dinner);
-        if(recipe.getTags().contains("Dinner")) {
+        if (recipe.getTags().contains("Dinner")) {
             dinner.setChecked(true);
         }
         dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (dinner.isChecked() && !recipe.getTags().contains("Dinner")){
+                if (dinner.isChecked() && !recipe.getTags().contains("Dinner")) {
                     recipe.getTags().add("Dinner");
-                }else{
+                } else {
                     recipe.getTags().remove("Dinner");
                 }
             }
@@ -144,7 +135,7 @@ public class EditRecipeDialog extends AppCompatDialogFragment {
                         if (title.length() > 2 || ingredients.length() > 2 || instructions.length() > 2) {
 //                            recipeRef.child(title).setValue(new Recipe(title, "test", ingredients, instructions));
                             ArrayList<String> currentTags = recipe.getTags();
-                            Recipe recipe = new Recipe(title, currentTags , ingredients, instructions);
+                            Recipe recipe = new Recipe(title, currentTags, ingredients, instructions);
                             new FirebaseDatabaseHelper().updateRecipe(key, recipe, new FirebaseDatabaseHelper.DataStatus() {
                                 @Override
                                 public void DataIsLoaded(ArrayList<Recipe> recipes, List<String> keys) {
