@@ -17,7 +17,6 @@
         >
 
         <CheckBox
-            android:onClick="onCheckboxClicked"
             android:buttonTint="@color/colorPrimary"
             android:id="@+id/checkBox_breakfast"
             android:layout_width="100dp"
